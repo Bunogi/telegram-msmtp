@@ -24,8 +24,10 @@ def send(botid: str, userid: str, subject: str, body: str):
     )
 
     response = h1.getresponse()
-    print(f"Status: {response.status}, reason: {response.reason}")
-    print(f"Body: {response.read()}")
+    if response.status != 200:
+        print('Failed to send message:')
+        print(f"Status: {response.status}, reason: {response.reason}")
+        print(f"Body: {response.read()}")
     h1.close()
 
 
